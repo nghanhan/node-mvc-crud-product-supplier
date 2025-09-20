@@ -9,6 +9,12 @@ const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 
+const { swaggerUi, specs } = require("./swagger");
+
+// Swagger docs
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(specs));
+
+
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
