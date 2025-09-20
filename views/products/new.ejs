@@ -1,0 +1,31 @@
+<%- include("../partials/header") %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Add New Product</h1>
+  <a href="/products" class="btn btn-secondary">⬅️ Back to List</a>
+</div>
+
+<form action="/products" method="POST">
+  <div class="mb-3">
+    <label for="name" class="form-label">Product Name</label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" class="form-control" id="price" name="price" step="0.01" placeholder="Enter price">
+  </div>
+
+  <div class="mb-3">
+    <label for="supplier" class="form-label">Supplier</label>
+    <select class="form-select" id="supplier" name="supplier" required>
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s._id %>"><%= s.name %></option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">➕ Add Product</button>
+</form>
+
+<%- include("../partials/footer") %>

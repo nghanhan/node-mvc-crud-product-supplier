@@ -1,0 +1,38 @@
+<%- include("../partials/header") %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Edit Product</h1>
+  <a href="/products" class="btn btn-secondary">⬅️ Back to List</a>
+</div>
+
+<form action="/products/<%= product._id %>/update" method="POST">
+  <div class="mb-3">
+    <label for="name" class="form-label">Product Name</label>
+    <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="price" class="form-label">Price</label>
+    <input type="number" class="form-control" id="price" name="price" step="0.01" value="<%= product.price %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="quantity" class="form-label">Quantity</label>
+    <input type="number" class="form-control" id="quantity" name="quantity" value="<%= product.quantity || 0 %>">
+  </div>
+
+  <div class="mb-3">
+    <label for="supplier" class="form-label">Supplier</label>
+    <select class="form-select" id="supplier" name="supplier" required>
+      <% suppliers.forEach(s => { %>
+        <option value="<%= s._id %>" <%= s._id.toString() === product.supplier?.toString() ? 'selected' : '' %>>
+          <%= s.name %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Update Product</button>
+</form>
+
+<%- include("../partials/footer") %>
